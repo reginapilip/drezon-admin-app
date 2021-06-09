@@ -886,7 +886,7 @@
                                     <i class="icon icon-sm" data-feather="more-vertical"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink-7">
-                                    <a class="dropdown-item" href="#"><i class="icon-xs icon mr-2" data-feather="user"></i> View Profile</a>
+                                    <a class="dropdown-item" href="{{ route('view_profile') }}"><i class="icon-xs icon mr-2" data-feather="user"></i> View Profile</a>
                                     <a class="dropdown-item" href="#"><i class="icon-xs icon mr-2" data-feather="search"></i> Search</a>
                                     <a class="dropdown-item" href="#"><i class="icon-xs icon mr-2" data-feather="menu"></i> More</a>
                                     <div class="dropdown-divider"></div>

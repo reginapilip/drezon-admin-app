@@ -8,13 +8,14 @@
     <div class="row align-items-center justify-content-center">
         <div class="col-md-8 col-lg-6 col-xl-5">
             <div class="p-2 mt-4">
-                <form id="updateProfile" action="{{ url('/profile') }}" method="POST">
+                <form id="updateProfile">
                 @csrf
-                    <input type="hidden" id="custId" name="custId" value="{{ id }}">
+                    <input type="hidden" id="id" name="id" value="{{ $id }}">
+                    
                     <div class="form-group">
                         <label for="name">{{ __('First Name') }}</label>
                         <input id="name" type="text"
-                            class="form-control @error('name') is-invalid @enderror" name="name" autocomplete="name" autofocus placeholder="Update first name" value=" {{ first_name }}">
+                            class="form-control @error('name') is-invalid @enderror" name="name" autocomplete="name" autofocus placeholder="Update first name" value="{{ $first_name }}">
 
                       <!--  @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -26,7 +27,7 @@
                     <div class="form-group">
                         <label for="lastname">{{ __('Last Name') }}</label>
                         <input id="lastname" type="text"
-                            class="form-control @error('lastname') is-invalid @enderror" name="lastname" autocomplete="lastname" autofocus placeholder="Update last name" value="{{ last_name }}">
+                            class="form-control @error('lastname') is-invalid @enderror" name="lastname" autocomplete="lastname" autofocus placeholder="Update last name" value="{{ $last_name }}">
 
                       <!--  @error('lastname')
                         <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@
                     <div class="form-group">
                         <label for="email">{{ __('Email') }}</label>
                         <input id="email" type="email"
-                            class="form-control @error('email') is-invalid @enderror" name="email" autocomplete="email" placeholder="Update email" value="{{ email }}">
+                            class="form-control @error('email') is-invalid @enderror" name="email" autocomplete="email" placeholder="Update email" value="{{ $email }}">
 
                        <!-- @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -50,7 +51,7 @@
                     <div class="form-group">
                         <label for="phone">{{ __('Phone') }}</label>
                         <input id="phone" type="text"
-                            class="form-control @error('phone') is-invalid @enderror" name="phone" autocomplete="phone" autofocus placeholder="Update phone" value="{{ phone }}">
+                            class="form-control @error('phone') is-invalid @enderror" name="phone" autocomplete="phone" autofocus placeholder="Update phone" value="{{ $phone }}">
 
                        <!-- @error('phone')
                         <span class="invalid-feedback" role="alert">
@@ -70,9 +71,18 @@
 @endsection
 @section('script')
 <script>
-$("#updateProfile").submit(function(e) {
+
+
+$("#updateProfile").submit( function(e) {
     e.preventDefault()
-    console.log("hello")
+    
+    var id = $('#id').val()
+    var first_name = $('#name').val()
+    var last_name = $('#lastname').val()
+    var email = $('#email').val()
+    var phone = $('#phone').val()
+    var _token = $('input[name=_token]').val()
+
     $.ajax({
         url: '{{ url('/profile') }}', 
         type: 'POST',
@@ -85,10 +95,11 @@ $("#updateProfile").submit(function(e) {
             first_name: name,
             last_name: lastname,
             email: email,
-            phone: phone
+            phone: phone,
+            _token: _token
         },
         success: function(response) {
-            alert('Success! Updates made.')
+            console.log('success')
         }
     })
 })
