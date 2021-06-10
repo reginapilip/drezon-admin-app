@@ -38,13 +38,7 @@ class UpdateProfileController extends Controller
             $user->phone = $phone;
             $user->save();
             
-            // return response()->json();
-
-            // if ($user->wasChanged('first_name')) {
-            //     return redirect('/profile');
-            //     session()->flash('success', 'User updated successfully');
-            // }
-            
+            // return response()->json();    
         } 
     }
 }

@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="mt-3 text-right">
-                        <button class=" btn btn-primary btn-block waves-effect waves-light" type="submit">Update Profile</button>
+                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Update Profile</button>
                     </div>
                 </form> 
             </div>
@@ -71,38 +71,40 @@
 @endsection
 @section('script')
 <script>
+// alert('hello');
 
+$(document).ready(function () {
+    $("#updateProfile").submit( function(e) {
+        e.preventDefault();
+        
+        var id = $('#id').val();
+        var first_name = $('#name').val();
+        var last_name = $('#lastname').val();
+        var email = $('#email').val();
+        var phone = $('#phone').val();
+        // var _token = $('input[name=_token]').val();
 
-$("#updateProfile").submit( function(e) {
-    e.preventDefault()
-    
-    var id = $('#id').val()
-    var first_name = $('#name').val()
-    var last_name = $('#lastname').val()
-    var email = $('#email').val()
-    var phone = $('#phone').val()
-    var _token = $('input[name=_token]').val()
-
-    $.ajax({
-        url: '{{ url('/profile') }}', 
-        type: 'POST',
-        dataType: 'json',
-        headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-        },
-        data: {
-            id: id,
-            first_name: name,
-            last_name: lastname,
-            email: email,
-            phone: phone,
-            _token: _token
-        },
-        success: function(response) {
-            console.log('success')
-        }
-    })
-})
+        $.ajax({
+            url: '{{ route('update_profile') }}', 
+            type: 'POST',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            },
+            data: {
+                id: id,
+                first_name: name,
+                last_name: lastname,
+                email: email,
+                phone: phone,
+                // _token: _token
+            },
+            success: function(response) {
+                console.log('success')
+            }
+        });
+    });
+});
 </script>
 
 @endsection

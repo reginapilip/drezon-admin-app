@@ -24,7 +24,7 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
 // Route::match(['get', 'post'], '/profile', ['as' => 'user_profile', 'uses' => 'App\Http\Controllers\UpdateProfileController::class@profile']);
 
 Route::get('/profile', [App\Http\Controllers\UpdateProfileController::class, 'index'])->name('view_profile');
-Route::post('/profile', [App\Http\Controllers\UpdateProfileController::class, 'profile']);
+Route::post('/update-profile', [App\Http\Controllers\UpdateProfileController::class, 'profile'])->name('update_profile');
 
 
 
